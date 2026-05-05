@@ -3,6 +3,10 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
+import Blog from "./pages/Blog";
+import Videos from "./pages/Videos";
+import Testimonials from "./pages/Testimonials";
+import Clients from "./pages/Clients";
 
 export default function App() {
   return (
@@ -32,6 +36,22 @@ export default function App() {
       <section id="projects" className="pt-24">
         <Projects />
       </section>
+
+      <section id="videos" className="pt-24">
+  <Videos />
+</section>
+
+<section id="blog" className="pt-24">
+  <Blog />
+</section>
+
+<section id="testimonials" className="pt-24">
+  <Testimonials />
+</section>
+
+<section id="clients" className="pt-24">
+  <Clients />
+</section>
 
       {/* Contact */}
       <section id="contact" className="pt-24 pb-32">

@@ -1,26 +1,23 @@
-export default function Hero() {
+export default function Header() {
   return (
-    <section className="relative flex items-center justify-center min-h-screen pt-24 px-6 text-center overflow-hidden">
+    <header className="flex justify-between items-center px-8 py-4 bg-black/40 backdrop-blur-md border-b border-white/10">
       
-      {/* Background estilo 9z */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-zinc-900 to-black opacity-80" />
-
-      {/* Glow */}
-      <div className="absolute w-[500px] h-[500px] bg-purple-600 opacity-10 blur-3xl rounded-full top-[-100px]" />
-
-      <div className="relative z-10 max-w-3xl">
-        <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
-          Miguel Fredman Nwafor
-        </h1>
-
-        <p className="text-gray-300 text-lg md:text-xl mb-8">
-          Creative Technologist and High End Digital Builder
-        </p>
-
-        <button className="border border-purple-500 px-6 py-3 rounded-lg hover:bg-purple-600 transition">
-          View Work
-        </button>
+      {/* Logo */}
+      <div className="flex items-center gap-2">
+        <img 
+          src="/logo.png" 
+          alt="Logo Miguel" 
+          className="h-10 w-auto select-none"
+        />
       </div>
-    </section>
+
+      {/* Menu */}
+      <nav className="flex gap-6 text-sm tracking-wide">
+        <Link to="home" smooth className="cursor-pointer hover:text-purple-400">Home</Link>
+        <Link to="about" smooth className="cursor-pointer hover:text-purple-400">About</Link>
+        <Link to="projects" smooth className="cursor-pointer hover:text-purple-400">Projects</Link>
+        <Link to="contact" smooth className="cursor-pointer hover:text-purple-400">Contact</Link>
+      </nav>
+    </header>
   );
 }
