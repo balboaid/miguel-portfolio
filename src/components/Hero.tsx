@@ -1,3 +1,4 @@
+import { Link } from 'react-scroll';
 export default function Header() {
   return (
     <header className="flex justify-between items-center px-8 py-4 bg-black/40 backdrop-blur-md border-b border-white/10">

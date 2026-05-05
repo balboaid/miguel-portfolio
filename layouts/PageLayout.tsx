@@ -1,7 +1,9 @@
-export default function PageLayout({ children }) {
+import type { ReactNode } from 'react';
+
+export default function PageLayout({ children }: { children: ReactNode }) {
   return (
-    <section className="pt-24 pb-32">
+    <div className="...">
       {children}
-    </section>
+    </div>
   );
 }
