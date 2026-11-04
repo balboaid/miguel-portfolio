@@ -1,62 +1,24 @@
 import Header from "./components/Header";
 import Home from "./pages/Home";
-import About from "./pages/About";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
-import Blog from "./pages/Blog";
-import Videos from "./pages/Videos";
-import Testimonials from "./pages/Testimonials";
-import Clients from "./pages/Clients";
 
 export default function App() {
   return (
-    <main
-      className="
-      min-h-screen text-white font-sans
-      bg-black 
-      bg-[radial-gradient(circle_at_center,_#1B1225_0%,_#000000_70%)]
-      "
-    >
-      {/* Header fixo */}
-      <div className="fixed top-0 left-0 w-full z-50">
-        <Header />
-      </div>
+    <main className="min-h-screen text-white font-sans bg-black bg-[radial-gradient(circle_at_center,_#1B1225_0%,_#000000_70%)]">
+      <Header />
 
-      {/* Home */}
-      <section id="home" className="pt-24">
+      <div className="pt-16">
         <Home />
-      </section>
 
-      {/* About */}
-      <section id="about" className="pt-24">
-        <About />
-      </section>
+        <section id="projects" className="pt-8 pb-24">
+          <Projects />
+        </section>
 
-      {/* Projects */}
-      <section id="projects" className="pt-24">
-        <Projects />
-      </section>
-
-      <section id="videos" className="pt-24">
-  <Videos />
-</section>
-
-<section id="blog" className="pt-24">
-  <Blog />
-</section>
-
-<section id="testimonials" className="pt-24">
-  <Testimonials />
-</section>
-
-<section id="clients" className="pt-24">
-  <Clients />
-</section>
-
-      {/* Contact */}
-      <section id="contact" className="pt-24 pb-32">
-        <Contact />
-      </section>
+        <section id="contact-page" className="pt-8 pb-24">
+          <Contact />
+        </section>
+      </div>
     </main>
   );
 }
