@@ -62,7 +62,7 @@ export const pt = {
     subtitle: "23+ anos construindo tecnologia, produtos e experiências digitais",
     current: "Atual",
     months: "meses",
-    years: "anos",
+    years: "+23",
     timeline: [
       {
         period: "Maio 2026 - Atual",

@@ -62,7 +62,7 @@ export const en = {
     subtitle: "23+ years building technology, products, and digital experiences",
     current: "Current",
     months: "months",
-    years: "years",
+    years: "+23",
     total_years: "23+",
     timeline: [
       {

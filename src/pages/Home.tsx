@@ -57,7 +57,7 @@ const fade = (delay = 0) => ({
 });
 
 export default function Home() {
-  const { t } = useTranslation();
+  const { t, lang } = useTranslation();
   const hero = t.hero;
   const pillars = t.pillars;
   const about = t.about_page;
@@ -68,14 +68,18 @@ export default function Home() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────────────── */}
-      <section id="home" className="relative w-full min-h-screen flex items-center overflow-hidden pt-16">
-        {/* Radial glow */}
+      <section id="home" className="relative w-full min-h-screen overflow-hidden pt-16">
+        {/* Background image (desktop) */}
+        <div className="hidden lg:block absolute inset-0">
+          <div className="w-full h-full bg-[url('/hero.jpg')] bg-no-repeat bg-right bg-contain bg-zinc-900" />
+        </div>
+        {/* Radial glow overlay */}
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_70%_40%,rgba(120,40,200,0.18),transparent)]" />
+        {/* Dark overlay for readability */}
+        <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-black/90 via-black/40 to-black/10" />
 
-        <div className="relative max-w-7xl w-full mx-auto px-6 grid lg:grid-cols-2 gap-10 items-center py-20">
-
-          {/* Left: text */}
-          <div className="flex flex-col gap-6">
+        <div className="relative max-w-7xl w-full mx-auto px-6 flex items-center py-20 min-h-screen">
+          <div className="flex flex-col gap-6 max-w-2xl">
             <motion.div {...fade(0.05)}>
               <span className="inline-flex items-center gap-2 text-xs font-semibold text-purple-400 uppercase tracking-widest">
                 <span className="w-2 h-2 rounded-full bg-purple-500 animate-pulse" />
@@ -94,25 +98,20 @@ export default function Home() {
             </motion.p>
 
             <motion.div {...fade(0.3)} className="flex flex-wrap gap-3">
-              <a
-                href="/cv/miguel-nwafor-cv-en.pdf"
-                download="Miguel-Nwafor-CV-EN.pdf"
-                className="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white font-semibold px-6 py-3 rounded-full transition-colors"
-              >
-                {IconBriefcase()} {hero.cta_resume}
-              </a>
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 border border-white/20 hover:border-white/40 text-white font-semibold px-6 py-3 rounded-full transition-colors"
+                className="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white font-semibold px-8 py-3.5 rounded-full transition-colors"
               >
                 {IconMail()} {hero.cta_connect}
               </Link>
+              <a
+                href="/cv/miguel-nwafor-cv-en.pdf"
+                download="Miguel-Nwafor-CV-EN.pdf"
+                className="inline-flex items-center gap-2 border border-white/30 hover:border-white/50 text-white font-semibold px-8 py-3.5 rounded-full transition-colors"
+              >
+                {IconBriefcase()} {hero.cta_resume}
+              </a>
             </motion.div>
-          </div>
-
-          {/* Right: hero photo */}
-          <div className="relative flex justify-center lg:justify-start items-center w-full h-full min-h-[600px]">
-            <div className="w-full h-full max-w-full max-h-[90vh] rounded-2xl overflow-hidden bg-[url('/hero.jpg')] bg-no-repeat bg-left bg-contain bg-zinc-900" />
           </div>
         </div>
       </section>
@@ -146,6 +145,51 @@ export default function Home() {
               <span key={i} className="text-gray-400 font-bold text-lg md:text-xl tracking-tight opacity-60 hover:opacity-100 transition-opacity">
                 {brand}
               </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── PROJECTS ─────────────────────────────────────────── */}
+      <section id="projects" className="w-full py-10 px-6">
+        <div className="max-w-7xl mx-auto">
+          <p className="text-xs font-semibold uppercase tracking-widest text-purple-400 mb-6">
+            {t.projects_page.title}
+          </p>
+          <div className="grid md:grid-cols-4 gap-5 mt-3">
+            {[
+              { title: { en: "Bosch® Car Service", pt: "Bosch® Car Service" }, type: { en: "Website", pt: "Website" }, behanceUrl: "https://www.behance.net/gallery/203838285/Bosch-Car-Service-Website-AHP-Campinas", thumbnail: "/thumbnails/Bosch Car Service.png" },
+              { title: { en: "E-Commerce - BAD BOY", pt: "E-Commerce - BAD BOY" }, type: { en: "E-commerce", pt: "E-commerce" }, behanceUrl: "https://www.behance.net/gallery/223343701/E-Commerce-BAD-BOY", thumbnail: "/thumbnails/E-Commerce - BAD BOY.png" },
+              { title: { en: "Hotsite - TEGRA", pt: "Hotsite - TEGRA" }, type: { en: "Hotsite", pt: "Hotsite" }, behanceUrl: "https://www.behance.net/gallery/156883727/Hotsite-TEGRA-Grand-Guanabara-Campinas", thumbnail: "/thumbnails/TEGRA.png" },
+              { title: { en: "Key Visual - CYRELA", pt: "Key Visual - CYRELA" }, type: { en: "Key Visual", pt: "Key Visual" }, behanceUrl: "https://www.behance.net/gallery/157318135/Key-Visual-CYRELA", thumbnail: "/thumbnails/Key Visual - CYRELA.png" },
+              { title: { en: "Key Visual - TEAM NOGUEIRA", pt: "Key Visual - TEAM NOGUEIRA" }, type: { en: "Key Visual", pt: "Key Visual" }, behanceUrl: "https://www.behance.net/gallery/157319139/Key-Visual-TEAM-NOGUEIRA", thumbnail: "/thumbnails/Key Visual - TEAM NOGUEIRA.png" },
+              { title: { en: "Newsletter HTML - AMBEV _ CORONA EXTRA", pt: "Newsletter HTML - AMBEV _ CORONA EXTRA" }, type: { en: "Newsletter", pt: "Newsletter" }, behanceUrl: "https://www.behance.net/gallery/156883927/Newsletter-HTML-AMBEV-CORONA-EXTRA", thumbnail: "/thumbnails/CORONA.png" },
+              { title: { en: "Site - Brazil Health + Estadão _ UI_UX", pt: "Site - Brazil Health + Estadão _ UI_UX" }, type: { en: "Site", pt: "Site" }, behanceUrl: "https://www.behance.net/gallery/220337937/Site-Brazil-Health-Estadao-UIUX", thumbnail: "/thumbnails/Site - Brazil Health + Estadão _ UI_UX.png" },
+              { title: { en: "The Lord's Pub - Logo", pt: "The Lord's Pub - Logo" }, type: { en: "Logo", pt: "Logo" }, behanceUrl: "https://www.behance.net/gallery/95214371/The-Lords-Pub-Logo", thumbnail: "/thumbnails/LORD'S PUB.png" },
+              { title: { en: "Video Motion - GERMÂNIA CHOPP", pt: "Video Motion - GERMÂNIA CHOPP" }, type: { en: "Video Motion", pt: "Video Motion" }, behanceUrl: "https://www.behance.net/gallery/157317609/Video-Motion-GERMANIA-CHOPP", thumbnail: "/thumbnails/Video Motion - GERMÂNIA CHOPP.png" },
+              { title: { en: "Video Motion - SHELL", pt: "Video Motion - SHELL" }, type: { en: "Video Motion", pt: "Video Motion" }, behanceUrl: "https://www.behance.net/gallery/157317137/Video-Motion-SHELL", thumbnail: "/thumbnails/SHELL.png" },
+              { title: { en: "XP Investimentos", pt: "XP Investimentos" }, type: { en: "Investments", pt: "Investimentos" }, behanceUrl: "https://www.behance.net/gallery/95109307/XP-Investimentos", thumbnail: "/thumbnails/XP Investimentos.png" },
+              { title: { en: "Hotsite - VITACON", pt: "Hotsite - VITACON" }, type: { en: "Hotsite", pt: "Hotsite" }, behanceUrl: "https://www.behance.net/gallery/156884977/Hotsite-VITACON-Isabelle-Quaglio", thumbnail: "/thumbnails/VITACON.png" },
+              { title: { en: "Cartão de Visitas - SETIN INCORPORADORA", pt: "Cartão de Visitas - SETIN INCORPORADORA" }, type: { en: "Website", pt: "Website" }, behanceUrl: "https://www.behance.net/gallery/157225691/Cartao-de-Visitas-SETIN-INCORPORADORA", thumbnail: "/thumbnails/SETIN.png" },
+            ].map((project) => (
+              <a
+                key={project.behanceUrl}
+                href={project.behanceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white/[0.03] border border-white/10 rounded-2xl overflow-hidden hover:border-purple-500/40 transition-colors group"
+              >
+                <img
+                  src={project.thumbnail}
+                  alt={project.title[lang ?? "pt"]}
+                  className="w-full h-32 object-cover"
+                  loading="lazy"
+                />
+                <div className="p-3">
+                  <h4 className="text-sm font-semibold text-white mb-1 uppercase">{project.title[lang ?? "pt"]}</h4>
+                  <p className="text-xs text-gray-400">{project.type[lang ?? "pt"]}</p>
+                </div>
+              </a>
             ))}
           </div>
         </div>
