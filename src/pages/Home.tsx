@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useTranslation } from '../hooks/useTranslation';
+import { Link } from 'react-router-dom';
 
 // ---------- Icons (inline SVG) ----------
 function IconCode() {
@@ -26,28 +27,26 @@ function IconBrain() {
 function IconMail() {
   return (
     <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 1-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
     </svg>
   );
 }
 function IconBriefcase() {
   return (
     <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081-.768-2.015-1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0" />
     </svg>
   );
 }
 
 const pillarIcons = [<IconCode key="code" />, <IconBox key="box" />, <IconBrain key="brain" />];
 
-const brands = ['Google', 'IBM', 'Microsoft', 'Meta', 'Red Bull', 'Shell', 'Ambev', 'Iveco'];
+const brands = ['Google', 'Shell', 'Ambev', 'Red Bull', 'Iveco', 'XP Investimentos', 'Omnibees', 'UENI'];
 
 const skillIcons: Record<string, string> = {
-  React: '⚛', Angular: '🅰', 'Node.js': '🟩', Java: '☕', Python: '🐍',
-  'AI & LLMs': '🤖', 'Product Management': '📊', 'UX/UI': '✏',
-  'Cloud (AWS / Azure)': '☁', '3D & Creative Tools': '🎨',
-  'IA & LLMs': '🤖', 'Gestão de Produto': '📊',
-  '3D & Ferramentas Criativas': '🎨',
+  React: 'React', Angular: 'Angular', 'Node.js': 'Node', Java: 'Java', Python: 'Python',
+  'AI & LLMs': 'AI', 'Product Management': 'Product', 'UX/UI': 'UX',
+  'Cloud (AWS / Azure)': 'Cloud', '3D & Creative Tools': '3D',
 };
 
 const fade = (delay = 0) => ({
@@ -59,6 +58,12 @@ const fade = (delay = 0) => ({
 
 export default function Home() {
   const { t } = useTranslation();
+  const hero = t.hero;
+  const pillars = t.pillars;
+  const about = t.about_page;
+  const skills = t.skills_page;
+  const experience = t.experience_page;
+  const contact = t.contact_page;
 
   return (
     <>
@@ -66,7 +71,6 @@ export default function Home() {
       <section id="home" className="relative w-full min-h-screen flex items-center overflow-hidden pt-16">
         {/* Radial glow */}
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_70%_40%,rgba(120,40,200,0.18),transparent)]" />
-        <div className="pointer-events-none absolute right-0 top-0 w-1/2 h-full bg-[radial-gradient(ellipse_80%_80%_at_80%_20%,rgba(80,20,160,0.12),transparent)]" />
 
         <div className="relative max-w-7xl w-full mx-auto px-6 grid lg:grid-cols-2 gap-10 items-center py-20">
 
@@ -75,61 +79,40 @@ export default function Home() {
             <motion.div {...fade(0.05)}>
               <span className="inline-flex items-center gap-2 text-xs font-semibold text-purple-400 uppercase tracking-widest">
                 <span className="w-2 h-2 rounded-full bg-purple-500 animate-pulse" />
-                {t.hero.badge}
+                {hero.badge}
               </span>
             </motion.div>
 
             <motion.h1 {...fade(0.1)} className="text-5xl md:text-6xl xl:text-7xl font-black leading-[1.05] tracking-tight text-white">
-              {t.hero.title}
+              {hero.title}
               <br />
-              <span className="text-purple-400">{t.hero.highlight}</span>
+              <span className="text-purple-400">{hero.subtitle}</span>
             </motion.h1>
 
             <motion.p {...fade(0.2)} className="text-lg text-gray-300 max-w-lg leading-relaxed">
-              {t.hero.tagline}
+              {hero.tagline}
             </motion.p>
 
             <motion.div {...fade(0.3)} className="flex flex-wrap gap-3">
               <a
-                href="#experience"
+                href="/cv/miguel-nwafor-cv-en.pdf"
+                download="Miguel-Nwafor-CV-EN.pdf"
                 className="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white font-semibold px-6 py-3 rounded-full transition-colors"
               >
-                <IconBriefcase />
-                {t.hero.cta_resume}
+                {IconBriefcase()} {hero.cta_resume}
               </a>
-              <a
-                href="#contact"
+              <Link
+                to="/contact"
                 className="inline-flex items-center gap-2 border border-white/20 hover:border-white/40 text-white font-semibold px-6 py-3 rounded-full transition-colors"
               >
-                <IconMail />
-                {t.hero.cta_connect}
-              </a>
+                {IconMail()} {hero.cta_connect}
+              </Link>
             </motion.div>
           </div>
 
-          {/* Right: photo placeholder + vertical text */}
-          <div className="relative flex justify-center lg:justify-end items-center">
-            {/* Glow ring behind photo */}
-            <div className="absolute w-72 h-72 md:w-96 md:h-96 rounded-full bg-purple-700/20 blur-3xl" />
-
-            {/* Photo */}
-            <div className="relative z-10 w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-2 border-purple-500/30 bg-zinc-900 flex items-end justify-center">
-              <img
-                src="/src/assets/hero.png"
-                alt="Miguel Nwafor"
-                className="w-full h-full object-cover object-top"
-                onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-              />
-            </div>
-
-            {/* Vertical text right */}
-            <div className="hidden xl:flex flex-col items-center gap-2 absolute right-0 top-1/2 -translate-y-1/2">
-              {t.hero.side.map((word, i) => (
-                <span key={i} className="text-xs font-bold tracking-[0.3em] text-gray-500 uppercase" style={{ writingMode: 'vertical-rl' }}>
-                  {word}
-                </span>
-              ))}
-            </div>
+          {/* Right: hero photo */}
+          <div className="relative flex justify-center lg:justify-start items-center w-full h-full min-h-[600px]">
+            <div className="w-full h-full max-w-full max-h-[90vh] rounded-2xl overflow-hidden bg-[url('/hero.jpg')] bg-no-repeat bg-left bg-contain bg-zinc-900" />
           </div>
         </div>
       </section>
@@ -137,7 +120,7 @@ export default function Home() {
       {/* ── PILARES ──────────────────────────────────────────── */}
       <section className="w-full py-8 px-6">
         <div className="max-w-7xl mx-auto grid sm:grid-cols-3 gap-4">
-          {t.pillars.map((pillar, i) => (
+          {pillars.map((pillar, i) => (
             <motion.div key={i} {...fade(0.1 * i)}
               className="flex items-center gap-4 bg-white/[0.03] border border-white/10 rounded-2xl px-5 py-5 hover:border-purple-500/40 transition-colors group cursor-default"
             >
@@ -159,8 +142,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-6">{t.brands.label}</p>
           <div className="flex flex-wrap items-center gap-8 md:gap-12">
-            {brands.map((brand) => (
-              <span key={brand} className="text-gray-400 font-bold text-lg md:text-xl tracking-tight opacity-60 hover:opacity-100 transition-opacity">
+            {brands.map((brand, i) => (
+              <span key={i} className="text-gray-400 font-bold text-lg md:text-xl tracking-tight opacity-60 hover:opacity-100 transition-opacity">
                 {brand}
               </span>
             ))}
@@ -173,47 +156,42 @@ export default function Home() {
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-[auto_1fr_1fr] gap-10 items-start">
 
           {/* Photo card */}
-          <motion.div {...fade(0)} className="hidden md:block w-56 h-64 lg:w-64 lg:h-72 rounded-2xl overflow-hidden bg-zinc-900 border border-white/10 shrink-0">
-            <img
-              src="/src/assets/hero.png"
-              alt="Miguel Nwafor"
-              className="w-full h-full object-cover object-top"
-              onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-            />
-          </motion.div>
+          <motion.div {...fade(0)} className="hidden md:block w-56 h-64 lg:w-64 lg:h-72 rounded-2xl overflow-hidden bg-[url('/hero.jpg')] bg-no-repeat bg-center bg-cover bg-zinc-900 border border-white/10 shrink-0" />
 
           {/* About text */}
           <motion.div {...fade(0.1)} id="experience">
             <span className="inline-flex items-center gap-2 text-xs font-semibold text-purple-400 uppercase tracking-widest mb-3">
               <span className="w-2 h-2 rounded-full bg-purple-500" />
-              {t.about.label}
+              {about.title}
             </span>
             <h2 className="text-2xl md:text-3xl font-bold text-white leading-snug mb-4">
-              {t.about.title}{' '}
-              <span className="text-purple-400">{t.about.highlight}</span>
+              {about.headline}{' '}
+              <span className="text-purple-400">{about.highlight}</span>
             </h2>
-            <p className="text-gray-300 leading-relaxed text-sm mb-5">{t.about.p}</p>
-            <a href="#contact" className="text-purple-400 hover:text-purple-300 text-sm font-medium transition-colors">
-              {t.about.cta} →
-            </a>
+            <p className="text-gray-300 leading-relaxed text-sm mb-5">{about.intro}</p>
+            <Link to="/about" className="text-purple-400 hover:text-purple-300 text-sm font-medium transition-colors">
+              {about.cta} →
+            </Link>
           </motion.div>
 
           {/* Skills */}
           <motion.div {...fade(0.15)} id="skills">
             <span className="inline-flex items-center gap-2 text-xs font-semibold text-purple-400 uppercase tracking-widest mb-3">
               <span className="w-2 h-2 rounded-full bg-purple-500" />
-              {t.skills.label}
+              {skills.title}
             </span>
             <div className="flex flex-wrap gap-2">
-              {t.skills.items.map((skill) => (
-                <span
-                  key={skill}
-                  className="flex items-center gap-1.5 bg-white/[0.05] border border-white/10 rounded-full px-3 py-1.5 text-xs font-medium text-gray-200 hover:border-purple-500/50 transition-colors"
-                >
-                  {skillIcons[skill] && <span className="text-sm">{skillIcons[skill]}</span>}
-                  {skill}
-                </span>
-              ))}
+              {skills.categories.map((cat) =>
+                cat.skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="flex items-center gap-1.5 bg-white/[0.05] border border-white/10 rounded-full px-3 py-1.5 text-xs font-medium text-gray-200 hover:border-purple-500/50 transition-colors"
+                  >
+                    {skillIcons[skill] && <span className="text-sm">{skillIcons[skill]}</span>}
+                    {skill}
+                  </span>
+                ))
+              )}
             </div>
           </motion.div>
         </div>
@@ -223,16 +201,14 @@ export default function Home() {
           <div className="bg-white/[0.03] border border-white/10 rounded-2xl px-8 py-6 flex flex-wrap items-center gap-4">
             <span className="inline-flex items-center gap-2 text-xs font-semibold text-purple-400 uppercase tracking-widest">
               <span className="w-2 h-2 rounded-full bg-purple-500" />
-              {t.experience.label}
+              {experience.title}
             </span>
             <div className="flex items-baseline gap-1 ml-auto">
-              <span className="text-5xl font-black text-white">{t.experience.years}</span>
-              <span className="text-2xl font-bold text-gray-400">{t.experience.sub}</span>
+              <span className="text-5xl font-black text-white">{experience.years}</span>
+              <span className="text-2xl font-bold text-gray-400">{experience.years}</span>
             </div>
             <div className="text-gray-400 text-sm max-w-xs">
-              {t.experience.desc}
-              <br />
-              <span className="text-gray-500 text-xs">{t.experience.note}</span>
+              {experience.subtitle}
             </div>
           </div>
         </motion.div>
@@ -249,15 +225,16 @@ export default function Home() {
               </svg>
             </div>
             <div className="flex-1 text-center md:text-left">
-              <div className="text-white font-bold text-lg">{t.cta_banner.title}</div>
-              <div className="text-gray-400 text-sm mt-1">{t.cta_banner.sub}</div>
+              <div className="text-white font-bold text-lg">{t.contact_page.title}</div>
+              <div className="text-gray-400 text-sm mt-1">
+                Entre em contato para que possamos desenvolver projetos de tecnologia, engenharia de software, produtos digitais e IA aplicada.
+              </div>
             </div>
             <a
               href="mailto:miguel@miguelnwafor.com.br"
               className="shrink-0 inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white font-semibold px-6 py-3 rounded-full transition-colors"
             >
-              <IconMail />
-              {t.cta_banner.cta} →
+              {IconMail()} {contact.cta} →
             </a>
           </div>
         </motion.div>

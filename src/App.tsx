@@ -1,24 +1,29 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from "./components/Header";
 import Home from "./pages/Home";
-import Projects from "./pages/Projects";
-import Contact from "./pages/Contact";
+import AboutPage from "./pages/AboutPage";
+import ExperiencePage from "./pages/ExperiencePage";
+import SkillsPage from "./pages/SkillsPage";
+import ProjectsPage from "./pages/ProjectsPage";
+import TestimonialsPage from "./pages/TestimonialsPage";
+import ContactPage from "./pages/ContactPage";
 
 export default function App() {
   return (
-    <main className="min-h-screen text-white font-sans bg-black bg-[radial-gradient(circle_at_center,_#1B1225_0%,_#000000_70%)]">
-      <Header />
+    <Router>
+      <main className="min-h-screen text-white font-sans bg-black bg-[radial-gradient(circle_at_center,_#1B1225_0%,_#000000_70%)]">
+        <Header />
 
-      <div className="pt-16">
-        <Home />
-
-        <section id="projects" className="pt-8 pb-24">
-          <Projects />
-        </section>
-
-        <section id="contact-page" className="pt-8 pb-24">
-          <Contact />
-        </section>
-      </div>
-    </main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/experience" element={<ExperiencePage />} />
+          <Route path="/skills" element={<SkillsPage />} />
+          <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/testimonials" element={<TestimonialsPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+        </Routes>
+      </main>
+    </Router>
   );
 }
